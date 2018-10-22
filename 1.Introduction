@@ -1,0 +1,63 @@
+### 1. 네트워크 1장
+- Introduction
+  - network structure
+    - network edge : applications and hosts, 예를 들면 웹 브라우저
+    - network core : routers, network of networks
+    - access networks, physical media : communication links
+  - network edge
+    - end systems(hosts) : 어플리케이션 프로그램을 작동시킴, web, email등
+    - client/server model : 클라이언트가 요청하고 서버가 응답. Web browser/server, email client/server - 대표적 네트워크 통신 모델
+    - peer-peer model : minimal use of dedicated servers, Skype, BitTorrent, KaZaA
+  - network core
+    - 라우터(네트워크 연결)
+      - 어떻게 데이터를 전달할 것인가?
+        1. circuit switching
+           - 출발지부터 목적지까지 bandwidth를 예약해서 해당 데이터가 방해받지 않고 이동하는 방식
+           - 예전 유선전화가 이런 방식이었다.
+           - no sharing, dedicated resource
+        2. packet switching(이 방식을 사용함)
+           - 패킷단위로 분리되어 전달됨.
+           - activity가 없을 경우에 예약해두어서 사용하는 것보다 이 방식으로 multiplexing을 사용하는 것이 훨씬 효율적이다.
+      - 예시) 사용자들이 라우터를 통해 네트워크 연결되어 통신한다. 해당 회선은 대역폭 1 Mbps일 때, 각각의 사용자는 100Kbps만큼 활동한다. 사용자는 전체 시간의 10%만 각각 사용
+        - 이 경우 circuit 스위칭을 사용한다면 10명의 사용자가 네트워크에 연결할 수 있다. 따라서 시간, 대역 등 낭비가 매우 심 하다. 동시에 10명이 동작을 하고 싶어한다면 문제가 될 것이다.
+        - 패킷 스위칭을 하면 35명 이상의 유저도 지원할 수 있는데 한 번에 10명 이상의 유저가 데이터를 전달시 문제가 될 수 있다.
+  - 네트워크 예시(편지지)
+    - 한국에 있는 A가 미국에 있는 B에게 편지를 보낸다고 가정한다. 이 경우 편지봉투에 편지지를 넣을 것. 편지지는 여기서 데이터의 핵심 내용이기 때문에 이 자체가 바로 전송하고자 하는 데이터가 된다.
+    - 편지 봉투는 데이터를 감싸고 있는 패킷으로, 주소/우표/서비스 등 여러가지 부가적인 내용이 덧붙는다. 예를 들어, 주소의 경우 보내는 사람/받는 사람이 있는데 이를 네트워크 적으로는 Source IP/ Destination IP라고 부르게 된다.
+    - 또한, 중요한 내용물일 경우 추적 서비스가 필요할 수 있다. 이와 같이 데이터를 전송할 때, 그 신뢰성을 보장받기 위해 사용하는 프로토콜은 TCP, 아니면 UDP를 사용한다.(전송계층)
+    - 즉, 다음과 같다.
+      - 편지지 : 데이터
+      - 편지봉투 : 패킷
+      - 서비스 : 프로토콜(TCP, UDP(User Datagram protocol))
+    - TCP는 UDP에 비해 구현도 복잡하며 오버헤드가 발생할 수 있다.
+      - TCP의 예 : Http, FTP(file transfer), Telnet, SMTP
+      - UDP의 예 : streaming media, teleconferencing, DNS, Internet telephony
+  - 프로토콜이란?
+    - 네트워크를 동작시키는 규약. 서로 다른 개체가 의사소통이 가능하도록 하는 규약을 의미한다.
+    - 이해를 쉽게 하기 위해 예를 들자면, 사람과 사람이 의사소통을 하는데 최소한 같은 언어/ speaking, listening 등의 어떤 규칙이 있을 것이다. 이러한 규칙을 정의해놓은 것이 프로토콜이라고 볼 수 있다.
+  - 어떻게 손실과 지연이 발생하는가
+    1. Processing delay(프로세싱 딜레이)
+       - 목적지에 따라서 다음 라우터로 보낼 것을 선택해야 한다.
+    2. Queueing delay(큐잉 딜레이)
+       - 이 과정에서 앞에 먼저 전달된 데이터가 다음 라우터로 전달될 때까지 대기해야 함.
+    3. Transmission delay
+       - 전송 딜레이. 전송하고자 하는 데이터와 대역폭에 따라 완전히 전송될 때까지 걸리는 시간
+       - R = link bandwidth(bps), L = packet length(bits)
+       - L/R = time to send bits into link
+    4. Propagation delay
+       - 실제 다음 라우터까지 물리길이(거의 빛의 속도)
+    - 패킷 손실
+      - Queue가 꽉 차서 전달되지 못하는 경우가 대부분이다.
+      - 사용자가 극단적으로 몰릴 경우에는 이러한 상황이 발생할 수 있다.
+      - TCP의 경우 이 패킷 손실에 대한 대응으로 retransmission이 필요한데, 이 재전송을 누가하는가?
+        1. 원래 전달했던 사용자
+        2. 유실되기 바로 직전의 router
+        - 현재 인터넷 디자인은 사용자가 직접 다시 재전송하는 방식을 사용한다. 그래서 TCP계층은 end-user들이 가지며 router는 빠른 동작을 위해 IP 계층만 적용된다.
+        - 그래서 router들이 그런 작업만 하니까 core dumb(멍청이)라고 표현하기도 한다.
+  - Nodal delay(위 네 개의 지연이 모두 포함된 것)
+    - d_nodal = d_processing + d_queue + d_trans + d_prop
+    - 이 total delay가 작을 수록 좋다.
+    - 이 때, d_prop은 사실상 건들기가 어렵다.
+    - d_processing을 줄이고 싶다면 성능이 좋은 라우터를 사용하면 된다.(예를 들면, 톨게이트에서 하이패스를 생각해보면 좋다.)
+    - d_transmission의 경우는 bandwidth를 넓히면 더 빠르게 전송할 수 있다.
+    - d_queue와 같은 경우에는? 이 queue는 군중의 행동 패턴에 영향을 받는다. 즉, 어떤 시기에 많은 데이터가 전송되느냐에 따라 다를 수밖에 없어서 쉽지 않다. 실제로 대부분의 지연은 이 queue delay가 문제임.
