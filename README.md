@@ -5,3 +5,4 @@
 - 4. Transportation Layer1은 TCP에 대한 기본적 설명을 담고 있습니다.
 - 5. Transportation Layer2는 TCP의 rdt3와 fast transmission등 내부 기능에 대한 설명이 있습니다.
 - 6. Transportation Layer3는 TCP의 flow control, 초기 Connection Management, congestion control의 기초 설명이 들어 있습니다.
+- 7. Transportation Layer4는 TCP의 Congestion control에 대한 내용과 Fairness에 대한 내용이 담겨 있습니다.
