@@ -8,3 +8,8 @@
 - 7. Transportation Layer4는 TCP의 Congestion control에 대한 내용과 Fairness에 대한 내용이 담겨 있습니다.
 - 8. Network Layer1은 TCP의 forwarding table, routing, IP에 대한 설명입니다.
 - 9. Network Layer2는 NAT, DHCP입니다.
+- 10. Network Layer3는 Datagram, 파편화, Ipv6 // 4는 link-state, 벨만-포드 알고리즘 // 5는 AS, protocol, Multicast routing 입니다.
+- 11. Link Layer1은 Frame, CSMA/CS에 대한 설명입니다.
+- 12. Link Layer2는 Ethernet, ARP에 대한 설명입니다.
+- 13. Link Layer3은 스위치, VLAN에 대한 설명입니다.
+- 
