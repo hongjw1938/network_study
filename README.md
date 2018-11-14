@@ -12,4 +12,5 @@
 - 11. Link Layer1은 Frame, CSMA/CS에 대한 설명입니다.
 - 12. Link Layer2는 Ethernet, ARP에 대한 설명입니다.
 - 13. Link Layer3은 스위치, VLAN에 대한 설명입니다.
-- 
+- 14. Wireless and Mobility Network1은 Wireless와 WIFI에 대한 설명입니다.
+- 15. Wireless and Mobility Network2는 AP
