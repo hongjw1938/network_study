@@ -14,3 +14,4 @@
 - 13. Link Layer3은 스위치, VLAN에 대한 설명입니다.
 - 14. Wireless and Mobility Network1은 Wireless와 WIFI에 대한 설명입니다.
 - 15. Wireless and Mobility Network2는 AP
+- 16. Multimedia Networking1은 DASH, Content Distribution Network에 관한 내용입니다.
